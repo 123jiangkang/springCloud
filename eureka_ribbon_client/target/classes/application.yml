@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: RIBBON-CLIENT
+server:
+  port: 31002
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
