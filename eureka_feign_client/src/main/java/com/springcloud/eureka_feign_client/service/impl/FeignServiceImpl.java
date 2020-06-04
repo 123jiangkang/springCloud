@@ -1,6 +1,7 @@
 package com.springcloud.eureka_feign_client.service.impl;
 
 import com.springcloud.eureka_feign_client.service.IFeignService;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,8 +14,9 @@ import org.springframework.stereotype.Service;
  * <p>
  * 2020年06月03  kang.jiang  create file
  */
-@Service
+@Component
 public class FeignServiceImpl implements IFeignService {
+
     @Override
     public String feignTest() {
          return  "error request ! ! !";

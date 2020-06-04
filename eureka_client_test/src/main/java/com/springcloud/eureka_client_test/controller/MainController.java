@@ -20,8 +20,9 @@ public class MainController {
     private String message;
 
     @RequestMapping("/info")
-    public String test(){
+    public String test() throws Exception {
 //        eurekaClient.getNextServerFromEureka();
-        return message;
+        return  message;
     }
+
 }

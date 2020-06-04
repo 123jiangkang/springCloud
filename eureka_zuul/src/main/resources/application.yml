@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: EUREKA-ZUUL
+  profiles: test
+server:
+  port: 31006
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+zuul:
+  prefix: /zuul #指定访问路径前缀 访问 http://localhost:8731/zuul/main 会改为 http://localhost:8731/main
+  strip-prefix: false  #指定是否移除前缀
+  routes:
+    EUREKA-CLIENT-TEST:
+      path: /client/**
+      serviceId: EUREKA-CLIENT-TEST
+
+
+

@@ -1,0 +1,42 @@
+
+spring:
+  application:
+    name: EUREKA-ZUUL
+  profiles: test
+server:
+  port: 31006
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+zuul:
+  routes:
+    EUREKA-CLIENT-TEST:
+      path: /client/**
+      url: forward:/zuul/main
+---
+spring:
+  profiles: base
+# 基础zuul配置
+zuul:
+  routes:
+    EUREKA-CLIENT-TEST:  #会自动去找到这个应用ID
+      path: /client/**
+      url: http://localhost:31000/ #可以指定路由到指定的物理地址 在EUREKA-CLIENT-TEST是集群的情况下可以用于指定集群中的某一个
+---
+spring:
+  profiles: base-ribbon
+# 修改负载均衡策略
+zuul:
+  routes:
+    EUREKA-CLIENT-TEST:
+      path: /client/**   # 所有/client 的请求都会被转发到 EUREKA-CLIENT-TEST 服务
+      serviceId: EUREKA-CLIENT-TEST
+ribbon:
+  eureka:
+    enbaled: false #第二件事：禁止使用Eureka
+EUREKA-CLIENT-TEST:  # 对指定的服务使用指定的负载均衡策略
+  ribbon:
+    NIWSServiceListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #Rinnon LB策略 随机策略
+    listOfServers: localhost:31000,localhost:31001,localhost:31003 #客户端服务地址 for Rinnon LB策略  指定需要负载的客户端

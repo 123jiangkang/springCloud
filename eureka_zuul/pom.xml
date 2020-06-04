@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.springCloud</groupId>
-	<artifactId>eureka_feign_client</artifactId>
+	<artifactId>eureka_zuul</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>eureka_feign_client</name>
+	<name>eureka_zuul</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -30,16 +30,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
 		</dependency>
-		<!-- 加入断路器依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
